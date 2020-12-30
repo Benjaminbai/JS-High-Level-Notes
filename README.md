@@ -1,5 +1,6 @@
 # JS-High-Level-Notes
-JS-High-Level-Notes
+文档是《javascript高级程序设计》一书的阅读笔记
+旨在记录js的细节知识点，方便温故知新
 
 ## <script />元素的6个属性
 
