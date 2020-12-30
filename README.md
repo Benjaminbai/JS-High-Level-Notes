@@ -91,3 +91,36 @@ JS-High-Level-Notes
     var num3 = Number("0011") // 11
     var num4 = Number(true) // 1
 ```
+12. parseInt()数值转换
+    - 会检查是否符合数值模式，它会忽略字符串前面的空格，直到找到第一个非空字符
+    - 如果第一个字符不是数字，或负号，返回NaN
+    ```
+        parseInt("") //返回NaN
+        Number("") //返回0
+    ```
+    - 如果第一个字符是数值，会继续解析，直到遇到非数字字符
+    - parseInt()也可以识别八进制，十六进制
+    ```
+        var num1 = parseInt("1234blue") // 1234
+        var num2 = parseInt("") // NaN
+        var num3 = parseInt("0xA") // 10（十六进制）
+        var num4 = parseInt(22.5) // 22
+        var num5 = parseInt("070") // 56 (八进制)
+        var num6 = parseInt("70") // 70 (十进制)
+    ```
+    - parseInt()支持第二个参数
+    ```
+        var num1 = parseInt("0xAF", 16) // 175
+        var num2 = parseInt("AF", 16) // 175 指定了第二个参数，可以省略0x
+    ```
+13. parseFloat()数值转换
+    - 和parseInt()类似，但parsefloat只解析十进制，因此没有第二个参数
+    ```
+        var num1 = parseFloat("1234blue") // 1234
+        var num2 = parseFloat("0xA") // 0
+        var num3 = parseFloat("22.5") // 22.5
+        var num4 = parseFloat("22.5.5.5") // 22.5
+        var num5 = parseFloat("0987") // 987
+        var num6 = parseFloat("") // NaN
+    ```
+    
