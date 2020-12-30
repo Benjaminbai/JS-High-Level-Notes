@@ -124,4 +124,33 @@
         var num5 = parseFloat("0987") // 987
         var num6 = parseFloat("") // NaN
     ```
+
+## string类型
+```
+    var str = "java"
+    str = str + "script"
+```
+1. 后台首先创建了能容纳10个字符的新字符，储存了javascript，然后销毁原来的字符串java，和script，这也是旧版本浏览器拼接字符串速度很慢的原因
+2. 数值，布尔值，对象，字符串都有toString()方法，该方法返回字符串的一个副本
+3. null和undefined没有这个方法
+4. toString()一般不需要传参数，但可以传递一个参数，toString()支持任意有效进制，返回对应进制的结果
+```
+var num = 10
+num.toString() // "10"
+num.toString(2) // "1010"
+num.toString(8) // "12"
+num.toString(10) // "10"
+num.toString(16) // "a"
+```
+5. 在不确定要转换的值是null/undefined情况下，可以使用String()方法，可以将任何类型转换成字符串
+    - 如果值有toString()方法，则调用
+    - 如果值是nulll， 返回"null"
+    ```
+        String(null) // "null"
+    ```
+    - 如果值是undefined， 返回"undefined"
+    ```
+        String(undefined) // "undefined"
+    ```
+
     
