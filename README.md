@@ -67,3 +67,27 @@ JS-High-Level-Notes
 ```
     isNaN(true) // false true会被转换成1
 ```
+9. isNaN也适用于对象，会先调用对象的valueof()，然后确定是否能够转换成数值，如果不能，则基于这个返回值再调用toString()方法，在检查是否能转换成数值
+10. valueOf() 方法可返回 String 对象的原始值，valueOf() 方法通常由 JavaScript 在后台自动进行调用，而不是显式地处于代码中
+```
+    var str="Hello world!"
+    str.valueOf() // Hello world!
+```
+11. Number()数值转换
+    - 如果是boolean值，true/false将会被转换成1/0
+    - 如果是null，返回0
+    - 如果是undefined，返回NaN
+    - 如果是字符串：
+        - 空字符，返回0
+        - 字符串表示的有效十六进制，返回十进制结果
+        - 浮点数，返回浮点数，会忽略前导0
+        - 整数，返回整数，会忽略前导0，（我理解八进制也会忽略0）
+    - 如果是对象
+        - 调用对象的valueof()方法
+        - 如果返回是NaN,在调用toString()方法
+```
+    var num1 = Number("hello world") // NaN
+    var num2 = Number("") // 0
+    var num3 = Number("0011") // 11
+    var num4 = Number(true) // 1
+```
