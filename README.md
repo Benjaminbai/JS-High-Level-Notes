@@ -3,17 +3,11 @@
 旨在记录js的细节知识点，方便温故知新
 
 ## <script />元素的6个属性
-
 1. async 表示立即下载脚本，但并不妨碍页面中但其他操作
-
 2. charset 表示通过src属性指定但代码的字符集
-
 3. defer 表示脚本可以延迟到文档完全被解析和显示之后在执行
-
 4. language 表示编写代码的脚本语言，已经废弃
-
 5. src 表示包含要执行代码的外部文件
-
 6. type 可以看成是language的替代
 
 ## async 和 defer
@@ -23,9 +17,9 @@
 4. 区别在于defer会按照顺序一次执行，而async则不一定，因此最好不要有脚本等相互依赖关系
 
 ## <noscript>元素
-1. 会在不支持js的情况下展示信息，但条件
-2. 浏览器不支持javascript脚本
-3. 浏览器禁用js脚本
+1. 会在不支持js的情况下展示信息，但条件如下：
+    - 浏览器不支持javascript脚本
+    - 浏览器禁用js脚本
 
 ## var也有块级作用域
 1. 但只在function(){}中有效，在流程控制for(){}, if(){}中无效
@@ -152,5 +146,96 @@ num.toString(16) // "a"
     ```
         String(undefined) // "undefined"
     ```
+
+## Object类型
+1. Object实例都具备下列属性和方法
+    - Constructor：保存着用于创建当前对象的函数
+    - hasOwnProperty()：用于检查给定的属性，在当前实例中是否存在，参数必须以字符串形式指定
+    - isPropertyOf()：检查传入的对象，是否是另一个对象的原型
+    - propertyIsEnumerable()：用于检查传入的属性是否能用for-in的语句来枚举，参数必须以字符串形式指定
+    - toLocalString()：返回对象的字符串表示，字符串于执行环境地区对应
+    - toString()：返回字符串的表示
+    - valueof()：返回字符串的表示，和toString()方法的返回值相同
+
+## 操作符
+1. 执行‘前置’递增和递减操作，变量的值都是在语句被求值之‘前’改变
+2. 执行‘后置’递增和递减操作，变量的值都是在语句被求值之‘后’改变
+
+## 位操作符
+1. 对数值应用位操作符时，后台转换过程如下：
+2. 64位数值转换为32位数值，然后进行操作
+3. 然后将32位结果转换成64位
+4. 按位与：只在两个数值对应位都是1时，才返回1
+5. 按位或：两个数值对应位有一个是1，就返回1
+6. 按位异或：只在两个数值对应位只有一个为1时才返回1，两个都是1或都是0，则返回0
+7. 左移 <<：将数值位数左移指定位数，右侧空出补0，左移不会影响操作数对符号位
+8. 有符号对右移 >>：位数向右移动，但是会保留符号位
+9. 有符号右移 >>>： 会影响负数数值的位
+10. 布尔操作符
+    - 逻辑非：！
+    - 逻辑与：&&
+        - 可以应用于任何类型，在有一个操作数不是bool值的情况下，返回的就不一定是bool值
+        - 如果第一个操作数是对象，则返回第二个操作：
+        ```
+        {} && "123" // 返回 “123”
+        ```
+        - 如果第二个操作数是一个对象，则只有在第一个操作数结果为true的情况下才返回该对象
+        - 如果两个操作数都是对象，则返回第二个
+        - 如果有一个操作数是null/undefined/NaN，则返回null/undefined/NaN
+    - 逻辑或：||
+
+
+## label/break/continue
+1. 使用label语句可以在代码中添加标签，方便日后使用
+2. break会立即推出循环，强制执行循环后面的语句
+3. continue也是立即推出循环，但会从循环顶部继续执行循环
+4. break/continue语句都可以和label搭配使用，从而返回代码中特定的位置，多发生在循环嵌套的情况
+5. with语句，将作用域设置到一个特定的对象中，大量使用with会导致性能下降，不推荐使用，严格模式下会报语法错误
+6. switch语句：可以忽略break，达到合并使用的目的
+```
+switch(i) {
+    case 25:
+    case 35:
+        alert("25, 35")
+        break;
+    default:
+        alert("end")
+}
+```
+
+## 函数
+1. 如过出现同名函数，下面的会覆盖上面的函数
+2. js的函数不能重载
+
+## 变量，作用域，内存
+1. 基本数据类型Null, Undefined, Boolean, Number, String
+2. 函数的参数是按值传递的，即使参数是引用类型
+```
+function setName(obj) {
+    obj.name = "ben"
+    obj = new Object()
+    obj.name = "benjamin"
+}
+var person = new Object()
+setName(person)
+alert(person.name)
+```
+3. 类型检测
+    - typeof
+        ```
+        typeof "123"             // string
+        typeof ""                // string
+        typeof 123               // number
+        typeof true              // boolean
+        typeof undefineed        // undeefined
+        typeof null              // object
+        typeof new Object()      // object
+        typeof new Function() {} // function
+        ```
+    - instanceof
+        ```
+        语法： result = variable instanceof constructor
+        ```
+
 
     
