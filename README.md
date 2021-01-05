@@ -315,7 +315,65 @@
                 - apply()方法接收两个参数：1: 一个是在其中运行函数的作用域， 2: 另一个是参数数组
                 - call()方法和apply类似，只是第二个参数：需要逐个列举
                 - call，apply真正的用途是扩充函数赖以运行的作用域
-                - bind()方法会创建一个函数的实例，其this会绑定给传递给bind()方法的函数 
+                - bind()方法会创建一个函数的实例，其this会绑定给传递给bind()方法的函数
+5. 基本包装类
+    - 引用类型与基本包装类行的主要区别在于对象的生存期
+    - 使用new创建的引用类型的实例，在执行流离开当前作用域之前都一直保存在内存中
+    - 而自动创建的基本包装类对象，只存在于一行代码的执行瞬间，然后立即被销毁
+        ```
+        var s1 = "red"
+        s1.color = "blue"
+        alert(s1.color) // undefinied
+        ```
+    - 把字符串传给Object()构造函数，就会生成String()的实例，传入数值，就会创建Number类型，传入布尔值，创建Boolean类型
+    - 使用new 调用基本包装类型的构造函数，与直接调用同名的转型函数是不一样的
+        ```
+        var value = "25"
+        var number = Number(value)
+        alert(typeof number) // number
+
+        var obj = new Number(value)
+        alert(typeof obj) // object
+        ```
+6. boolean类型
+    - typeof 操作符，对于基本类型boolean值，返回boolean
+    - 对new 创建的基本包装类，返回object
+    - 所以instanceof 对于new 的基本包装类，返回true
+        ```
+        new Boolean(false) instanceof Boolean  // true
+        ```
+    - 而测试基本类型的boolean值，为false
+        ```
+        false instanceof Boolean   // false
+        ```
+7. Number类型
+    - toExponential()方法，返回以指数表示法，展示的数值，的字符串形式
+    - toPrecision()方法，接收参数代表用几位数表示，会返回一个最接近的数值的字符串形式
+
+8. String类型
+    - String类型的每一个实例都有length属性
+    - 访问字符串中特定字符的方法：charAt(), charCodeAt(),都接受1个参数，就是基于0字符的位置
+    - charAt()会返回字符
+    - charCodeAt()会返回字符的编码
+    - concat()方法，会将字符串拼接起来，返回一个新的字符串
+    - slice(), substr(), substring() 方法都接收两个参数，并且不会改变原字符串(空字符也算入位置)
+        - 1: 开始位置
+        - 2: 结束位置， substr()的第二个参数代表继其实位置后，返回的个数，如果第二个参数不指定，则以字符串长度作为结束位置
+        - 在传递的参数是负值情况时，他们的行为就不同
+            - slice()会把负值和字符串长度相加
+            - substr()会把负的第一个参数和字符串长度相加，而将负的第二个参数转换成0
+            - substring()会把负值都转换成0
+    - indexOf(), lastIndexOf(), 从字符串中搜索指定的字符串，返回字符串的位置，没有则返回-1
+    - 不同在于一个从头，一个从末尾
+    - 也都接收第二个参数，代表起始位置
+    - replace()接收两个参数，1: regexp对象，或是字符串， 2: 字符串，或者是一个函数
+
+9. 单体内置对象Global，Math
+    - global对象是ECMAScript中特殊的对象，不属于任何对象的属性和方法，最终都属于global对象的，
+    - ECMAScript中没有直接指出如何直接访问global对象，但web浏览器都是把global对象作为window对象的一部分加以实现
+    - 因此，全局作用域中声明的变量和函数，最终都成了windows对象的属性
+
+
     
 
 
