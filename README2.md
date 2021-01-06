@@ -100,10 +100,12 @@
 7. 理解原型对象
     - 无论何时，只要创建了一个新的对对象，就会根据特定的规则为函数创建一个prototype属性，这个属性指向函数的原型对象
     - 所有原型对象都会自动获得一个constructor属性，这个属性包含一个指向prototype属性所在函数的指针
+        ```
         Person(构造)                Person.prototype(原型)
             prototype                   constructor
         person1(实例)               person2(实例)
             \[\[prototype\]\]           \[\[prototype\]\]
+        ```
 
         - Person.prototype指向了原型对象
         - Person.prototype.constructor 又指回了Person
