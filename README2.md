@@ -100,4 +100,4 @@
 7. 理解原型对象
     - 无论何时，只要创建了一个新的对对象，就会根据特定的规则为函数创建一个prototype属性，这个属性指向函数的原型对象
     - 所有原型对象都会自动获得一个constructor属性，这个属性包含一个指向prototype属性所在函数的指针
-    <img src="http://static.runoob.com/images/runoob-logo.png" width="50%">
+    <img src="./img/prototype-constructor-instance.png" width="50%">
