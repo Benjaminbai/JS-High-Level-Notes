@@ -100,4 +100,20 @@
 7. 理解原型对象
     - 无论何时，只要创建了一个新的对对象，就会根据特定的规则为函数创建一个prototype属性，这个属性指向函数的原型对象
     - 所有原型对象都会自动获得一个constructor属性，这个属性包含一个指向prototype属性所在函数的指针
-    ![avatar](./img/prototype-constructor-instance.png)
+        Person(构造)                Person.prototype(原型)
+            prototype                   constructor
+        person1(实例)               person2(实例)
+            \[\[prototype\]\]           \[\[prototype\]\]
+
+        - Person.prototype指向了原型对象
+        - Person.prototype.constructor 又指回了Person
+        - Person的实例person1，person2都包含一个内部属性，该属性仅仅指向了Person.prototype,他们和构造函数之间没有直接关系
+        - 虽然在实现中没法直接访问 \[\[prototype\]\]，但是可以通过isPrototypeOf()确定对象之间是否存在这种关系
+            ```
+            Person.prototype.isPrototypeOf(person1) // true
+            ```
+        - Object.getPrototypeOf()，这个方法返回\[\[prototype\]\] 的值
+            ```
+            Object.getPrototypeOf(person1) == Person.prototype // true
+            Object.getPrototypeOf(person1).name // "benjamin"
+            ```
