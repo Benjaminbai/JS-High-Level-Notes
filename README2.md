@@ -433,7 +433,7 @@
     ```
     function inheritPrototype(SubType, SuperType) {
         var prototype = object(SuperType.prototype)
-        prototype.constructor = SubType
+        prototype.constructor = SubType // 我理解：这块等同于prototype.prototype.constructor = SubType; 因为原型式object()创建了一个实例，而实例和构造没有直接联系，实例没有constructor属性，所以会往原型上找，能找到就行
         SubType.prototype = prototype
     }
     ```
