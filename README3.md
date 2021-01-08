@@ -151,18 +151,18 @@
 每个节点都有nodeType属性，用于表明节点类型
 有12个node类型，任何类型必居其一
 1. Node类型
-    - Node.ELEMENT_NODE                         1
-    - Node.ATTRIBUTE_NODE                       2
-    - Node.TEXT_NODE                            3
-    - Node.CDAT_SECTION_NODE                    4
-    - Node.ENTITY_REFERENCE_NODE                5
-    - Node.ENTITY_NODE                          6
-    - Node.PROCESSING_INSTRUCTION_NODE          7
-    - Node.COMMENT_NODE                         8
-    - Node.DOCUMENT_NODE                        9
-    - Node.DOCUMENT_TYPE_NODE                   10
-    - Node.DOCUMENT_FRAGMENT_NODE               11
-    - Node.NOTATION_NODE                        12
+    - Node.ELEMENT_NODE                         [1]
+    - Node.ATTRIBUTE_NODE                       [2]
+    - Node.TEXT_NODE                            [3]
+    - Node.CDAT_SECTION_NODE                    [4]
+    - Node.ENTITY_REFERENCE_NODE                [5]
+    - Node.ENTITY_NODE                          [6]
+    - Node.PROCESSING_INSTRUCTION_NODE          [7]
+    - Node.COMMENT_NODE                         [8]
+    - Node.DOCUMENT_NODE                        [9]
+    - Node.DOCUMENT_TYPE_NODE                   [10]
+    - Node.DOCUMENT_FRAGMENT_NODE               [11]
+    - Node.NOTATION_NODE                        [12]
 2. 每一个节点都有一个childNodes属性
     - 它保存着一个nodeList对象
     - nodelist对象也有length属性，但它并不是Array的实例
@@ -174,3 +174,103 @@
 6. 所有节点都有一个属性ownerDocument,指向表示整个文档的文档节点
 7. appendChild()
     - 用于向childNodes列表的末尾添加一个节点
+    - 返回新增的节点
+8. 如果需要把节点放在childNodesl列表中某个特定的位置，可以使用insertBefore()
+    - 接收两个参数， 1: 要插入的节点，2: 参照节点
+    - 被插入的节点，将会变成参照节点的前一个兄弟节点
+9. replaceChild(),接收两个参数：1: 要插入的节点， 2: 要替换的节点
+10. 如果只想移除，而非替换，可以使用removeChild()
+    - 接收一个参数，要移除的节点
+    - 返回被移除的节点
+11. 有两个方法是所有类型节点都有的：
+    - cloneNode() 用于创建节点的一个副本
+        - 接收一个参数，布尔值，表示是否深拷贝
+        - 为true则表示复制整个节点及其子节点树
+        - false则表示只复制节点本身
+        - 节点上js事件不会得到复制
+    - normalize()方法，唯一的作用就是处理文档中的文本节点
+        - 如果是空文本节点，则删除
+        - 如果是两个相邻的文本节点，则合并
+12. document类型
+    - 特征：
+        - nodeType值为 9
+        - nodeName值为 #document
+        - nodeValue值为 null
+        - parentNode值为 null
+        - ownerDocument值为 null
+    - document对象有一个body属性，指向body元素
+    - documentType可以通过doctype访问
+    - 查找元素
+        - getElementById(), getElementByTagName()
+        - 可以给getElementByTagName()指定“*”参数，可以查询页面中所有元素
+        - HTMLDocument类型才有的getElementsByName(), 返回有name属性的所有元素
+    - 文档写入
+        - write()会原样写入
+        - writeIn会在末尾添加一个换行符\n
+        - 
+13. Element类型
+    - getAttribute()
+    - setAttribute()
+    - removeAttribute()
+14. Text类型
+    - 创建文本节点： document.createTextNode()
+15. documentFragment类型
+    - 可以保存将来要添加到文档中的节点
+    - 文档片段继承了Node的所有方法
+
+## DOM操作技术
+1. 动态脚本
+2. 动态样式
+3. 操作表格
+
+
+## DOM拓展
+1. querySelector()方法
+    - 接收一个css选择符，返回匹配的第一个元素
+2. querySlectorAll()
+    - 返回一个nodeList
+3. 元素遍历
+    - childElementCount  返回子元素的个数
+    - firstElementChild  指向第一个子元素
+    - lastElementChild   指向最后一个子元素
+    - previousElementSibling 指向前一个兄弟元素
+    - nextElementSibling 指向后一个兄弟元素
+
+## HTML5
+1. 于类相关的扩充
+    - getElementsByClassName()
+    - classList属性
+    - document.activeElement()会引用获得了焦点的元素，也新增了hasFocus()方法，用于判断是否获得了焦点
+2. HTMLDocument变化
+    - readState属性
+    - 兼容模式 compatMode
+    - head属性
+    - 字符集属性
+    - 自定义数据属性，以data-开头
+    - 插入标记
+        - innerHTML
+        - outerHTML
+        - children属性
+        - contains方法
+        - innerText插入文本
+        - outerText
+
+## DOM2 AND DOM3
+DOM1级主要定义了html，xml文档的底层结构，dom2级和dom3级引入了更多的交互
+1. 元素大小
+    - 偏移量
+        - offsetHeight: 元素在垂直空间上占用的大小
+        - offsetWidth: 元素在水平空间上占用的大小
+        - offsetLeft: 元素的左外边框，到包含元素的，左内边框的距离
+        - offsetTop: 元素的上外边框，到包含元素的，上内边框的距离
+    - 客户区大小
+        - 元素的内容，及内边距占用的空间
+        - clientWidth: 内容区+左右内边距
+        - clientHeight: 内容区+上下内边距
+    - 滚动大小
+        - scrollHeight: 元素没有滚动的情况下，内容区的高度
+        - scrollWidth: 元素没有滚动的情况下，内容区的宽度
+        - scrollLeft: 滚动情况下，左侧隐藏的长度
+        - scrollTop: 滚动情况下，上方隐藏的长度
+
+## ... 还有很多，DOM,BOM看不下去了
