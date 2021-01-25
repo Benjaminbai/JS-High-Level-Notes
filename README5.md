@@ -143,4 +143,6 @@
     - async await可以理解为promise的封装
         - 因此在遇到await可以适当进行改写，比较容易做题
 
-[js事件循环机制](http://lynnelv.github.io/js-event-loop-browser)
+[js事件循环机制1](http://lynnelv.github.io/js-event-loop-browser)
+[js事件循环机制2](https://zhuanlan.zhihu.com/p/87164532)
+[js事件循环机制3](https://zhuanlan.zhihu.com/p/100889981)
