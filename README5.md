@@ -142,3 +142,5 @@
         - 异步非阻塞：仍然是那个会“叮”一声的下载软件，小明提交下载任务后就去干别的，听到“叮”的一声就知道完成了。（最机智）
     - async await可以理解为promise的封装
         - 因此在遇到await可以适当进行改写，比较容易做题
+
+[js事件循环机制](http://lynnelv.github.io/js-event-loop-browser)
